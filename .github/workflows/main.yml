@@ -28,7 +28,7 @@ jobs:
             ACCOUNT: ${{secrets.ACCOUNT}}
         run: |
           sudo cp -p chromedriver /usr/bin/
-          chmod -R 777 /user/bin/chromedriver
+          chmod -R 777 /usr/bin/chromedriver
           python main.py
 
       
