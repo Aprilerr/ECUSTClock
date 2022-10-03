@@ -5,9 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 
-# os.environ[webdriver.chrome.driver] = '/usr/bin/chromedriver'
-# driver = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()))
-
+os.environ[webdriver.chrome.driver] = '/usr/bin/chromedriver'
 option = webdriver.ChromeOptions()
 # option.add_argument('--headless')   # 无头模式：不提供浏览器的可视化页面
 option.add_argument('--incognito')  # 启用无痕模式
