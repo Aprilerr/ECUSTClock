@@ -25,7 +25,7 @@ jobs:
             pip install -r requirements.txt
       - name: Run
         env:
-            ACCOUNT: ${{secrests.ACCOUNT}}
+            ACCOUNT: ${{secrets.ACCOUNT}}
         run: |
           sudo cp -p chromedriver /usr/bin/
           chmod -R 777 /user/bin/chromedriver
