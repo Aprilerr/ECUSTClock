@@ -4,6 +4,8 @@ on:
   schedule:
   #使用UTC时间
   - cron: '30 16 * * *'
+  workflow_dispatch:
+
 jobs:
   # This workflow contains a single job called "build"
   build:
