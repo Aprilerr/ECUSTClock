@@ -12,6 +12,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: CheckOout
+      - name: CheckOut
         uses: actions/checkout@v3
+      - name: Setup
+        uses: action/setup-python@v1
+        with:
+            python-version: 3.9
+      - name: Install
+        run:
+            pip install -r requirements.txt
+      - name: Run
+        env:
+            ACCOUNT: ${{secrests.ACCOUNT}}
+        run: |
+          sudo cp -p chromedriver /usr/bin/
+          chmod -R 777 /user/bin/chromedriver
+          python main.py
+
       
