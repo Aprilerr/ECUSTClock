@@ -11,7 +11,10 @@ option = webdriver.ChromeOptions()
 option.add_argument('--incognito')  # 启用无痕模式
 pref = {"profile.default_content_setting_values.geolocation": 2}
 option.add_experimental_option("prefs", pref)  # 禁用地理位置
-serv = Service('./chromedriver.exe')
+# GitHub服务器需要用这个driver
+serv = Service('/usr/bin/chromedriver')
+# win上用这个服务器
+# serv = Service('./chromedriver.exe')
 
 err = 0
 account = os.environ.get('ACCOUNT').split(';')  # 字符串预处理
