@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 
 os.environ["webdriver.chrome.driver"] = '/usr/bin/chromedriver'
 option = webdriver.ChromeOptions()
-# option.add_argument('--headless')   # 无头模式：不提供浏览器的可视化页面
+option.add_argument('--headless')   # 无头模式：不提供浏览器的可视化页面
 option.add_argument('--incognito')  # 启用无痕模式
 pref = {"profile.default_content_setting_values.geolocation": 2}
 option.add_experimental_option("prefs", pref)  # 禁用地理位置
