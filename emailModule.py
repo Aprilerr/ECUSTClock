@@ -3,8 +3,8 @@ from email.mime.text import MIMEText
 
 def sendMail(mail_user, mail_pass, messageCode):
     mail_host="smtp.qq.com"  #设置服务器
-    # mail_user="767760161@qq.com"    #用户名
-    # mail_pass="rhknloaqsvdqbbdf"   #口令,QQ邮箱是输入授权码，在qq邮箱设置 里用验证过的手机发送短信获得，不含空格
+    # mail_user="****@qq.com"    #用户名
+    # mail_pass="******"   #口令,QQ邮箱是输入授权码，在qq邮箱设置 里用验证过的手机发送短信获得，不含空格
     # mail_message="a text email from python"
     # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 

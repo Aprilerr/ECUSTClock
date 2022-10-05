@@ -31,12 +31,14 @@ for acc in account:
     browser.find_element(By.TAG_NAME,'button').submit()
     browser.implicitly_wait(1)
 
-    # 登录错误部分
+    # 判断是否密码错误
 
     # 登录成功
     browser.find_element(By.CSS_SELECTOR,'.iCheck-helper').click()
     browser.find_element(By.ID,'post').click()
     browser.implicitly_wait(1)
+
+    #判断是否已经填报
 
     # 每日健康报送
     browser.find_element(By.ID, 'radio_swjkzk20').click()        # radio_swjkzk20 健康
@@ -52,6 +54,8 @@ for acc in account:
     browser.find_element(By.LINK_TEXT, '确定').click()
     browser.find_element(By.LINK_TEXT, '确定').click()
     msg.append([usr[0],result])
+
+    #判断是否成功提交
 
 browser.close()
 
