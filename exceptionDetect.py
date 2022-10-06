@@ -22,12 +22,12 @@ def isAccountExcetpion(browser):
     return False
 
 # 检测是否出现登录错误
-def isCorrectLogin(browser,msg, usr, token):
+def isCorrectLogin(browser, msg, usr, token):
     errTime = 0
     correctCode = False
     while errTime <= 2 and correctCode == False:
-        veriFlag = isVerification()
-        accountFlag = isAccountExcetpion()
+        veriFlag = isVerification(browser)
+        accountFlag = isAccountExcetpion(browser)
         if accountFlag == True:
             print("密码错误，执行退出程序")
             msg.append([usr,"密码错误，执行退出程序"])
