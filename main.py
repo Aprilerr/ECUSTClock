@@ -15,15 +15,16 @@ pref = {"profile.default_content_setting_values.geolocation": 2}
 option.add_experimental_option("prefs", pref)  # 禁用地理位置
 # GitHub服务器需要用这个driver
 serv = Service('/usr/bin/chromedriver')
-# win上用这个服务器
-# serv = Service('./chromedriver.exe')
 
+# 获取 secret 资源
 account = os.environ.get('ACCOUNT').split(';')  # 字符串预处理
 user = os.environ.get('USER')
 psw = os.environ.get('PSW')
 token = os.environ.get('API_TOKEN')
+
 msg = []
-browser = webdriver.Chrome(options=option,service=serv) #打开浏览器
+#打开浏览器
+browser = webdriver.Chrome(options=option,service=serv)
 for acc in account:
     result = 'Success'
     usr = acc.split(',')
@@ -60,8 +61,10 @@ for acc in account:
             browser.find_element(By.LINK_TEXT, '确定').click()
             element = [usr[0],result]
             msg.append(element)
-#判断是否成功提交
+            #判断是否成功提交
 
+
+# 关闭浏览器资源
 browser.close()
-
+# 发送邮件
 emailModule.sendMail(mail_user=user, mail_pass=psw, messageCode=msg)
