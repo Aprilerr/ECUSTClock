@@ -3,7 +3,7 @@ name: AutoSignIn
 on:
   schedule:
   #使用UTC时间
-  - cron: '30 16 * * *'
+  - cron: '0 21 * * *'
   workflow_dispatch:
 
 jobs:
