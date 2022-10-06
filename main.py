@@ -21,6 +21,7 @@ serv = Service('/usr/bin/chromedriver')
 account = os.environ.get('ACCOUNT').split(';')  # 字符串预处理
 user = os.environ.get('USER')
 psw = os.environ.get('PSW')
+token = os.eviron.get('API_TOKEN')
 msg = []
 browser = webdriver.Chrome(options=option,service=serv) #打开浏览器
 for acc in account:
@@ -33,7 +34,7 @@ for acc in account:
     browser.implicitly_wait(1)
 
     # 判断是否密码错误
-    warn = exceptionDetect.isCorrectLogin(browser, msg, usr[0])
+    warn = exceptionDetect.isCorrectLogin(browser, msg, usr[0], token)
     if warn == False:
         # 登录成功
         browser.find_element(By.CSS_SELECTOR,'.iCheck-helper').click()

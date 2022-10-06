@@ -22,7 +22,7 @@ def isAccountExcetpion(browser):
     return False
 
 # 检测是否出现登录错误
-def isCorrectLogin(browser,msg, usr):
+def isCorrectLogin(browser,msg, usr, token):
     errTime = 0
     correctCode = False
     while errTime <= 2 and correctCode == False:
@@ -37,7 +37,7 @@ def isCorrectLogin(browser,msg, usr):
             img = browser.find_element(By.ID, "captchaImg")
             data = img.screenshot_as_png
             base64_data = base64.b64encode(data)
-            access_token = '24.83828a5a12deaf15f3b5dc5bd4aae11f.2592000.1667633689.282335-27774282'
+            access_token = token
             request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
             params = {"image": base64_data}
             request_url = request_url + "?access_token=" + access_token
