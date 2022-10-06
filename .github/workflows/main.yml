@@ -26,6 +26,9 @@ jobs:
       - name: Run
         env:
             ACCOUNT: ${{secrets.ACCOUNT}}
+            PSW: ${{secrets.PSW}}
+            USER: ${{secrets.USER}}
+            API_TOKEN: ${{secrets.API_TOKEN}}
         run: |
           sudo cp -p chromedriver /usr/bin/
           chmod -R 777 /usr/bin/chromedriver
