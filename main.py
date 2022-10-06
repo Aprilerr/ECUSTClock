@@ -21,7 +21,7 @@ serv = Service('/usr/bin/chromedriver')
 account = os.environ.get('ACCOUNT').split(';')  # 字符串预处理
 user = os.environ.get('USER')
 psw = os.environ.get('PSW')
-token = os.eviron.get('API_TOKEN')
+token = os.environ.get('API_TOKEN')
 msg = []
 browser = webdriver.Chrome(options=option,service=serv) #打开浏览器
 for acc in account:
