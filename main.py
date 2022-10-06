@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import emailModule
+import exceptionDetect
 
 os.environ["webdriver.chrome.driver"] = '/usr/bin/chromedriver'
 option = webdriver.ChromeOptions()
@@ -32,31 +33,33 @@ for acc in account:
     browser.implicitly_wait(1)
 
     # 判断是否密码错误
+    warn = exceptionDetect.isCorrectLogin(browser, msg, usr[0])
+    if warn == False:
+        # 登录成功
+        browser.find_element(By.CSS_SELECTOR,'.iCheck-helper').click()
+        browser.find_element(By.ID,'post').click()
+        browser.implicitly_wait(1)
 
-    # 登录成功
-    browser.find_element(By.CSS_SELECTOR,'.iCheck-helper').click()
-    browser.find_element(By.ID,'post').click()
-    browser.implicitly_wait(1)
+        #判断是否已经填报
+        warn = exceptionDetect.isFinished(browser, msg, usr[0])
+        if warn == False:
+            # 还未填报
+            # 每日健康报送
+            browser.find_element(By.ID, 'radio_swjkzk20').click()        # radio_swjkzk20 健康
+            browser.find_element(By.ID, 'radio_xrywz32').click()         # radio_xrywz32 徐汇校区
+            browser.find_element(By.ID, 'radio_xcm5').click()           # 行程吗绿色确定
+            browser.find_element(By.ID, 'radio_twsfzc9').click()           # 体温正常（默认已填）
+            browser.find_element(By.ID, 'radio_jkmsflm13').click()         # 健康发绿色确定（默认已填）
+            browser.find_element(By.ID, 'radio_sfycxxwc44').click()        # 没有从学校外出
+            browser.find_element(By.ID, 'post').click()                    # 提交表单
+            browser.implicitly_wait(1)
 
-    #判断是否已经填报
-
-    # 每日健康报送
-    browser.find_element(By.ID, 'radio_swjkzk20').click()        # radio_swjkzk20 健康
-    browser.find_element(By.ID, 'radio_xrywz32').click()         # radio_xrywz32 徐汇校区
-    browser.find_element(By.ID, 'radio_xcm5').click()           # 行程吗绿色确定
-    browser.find_element(By.ID, 'radio_twsfzc9').click()           # 体温正常（默认已填）
-    browser.find_element(By.ID, 'radio_jkmsflm13').click()         # 健康发绿色确定（默认已填）
-    browser.find_element(By.ID, 'radio_sfycxxwc44').click()        # 没有从学校外出
-    browser.find_element(By.ID, 'post').click()                    # 提交表单
-    browser.implicitly_wait(1)
-
-    #确认界面
-    browser.find_element(By.LINK_TEXT, '确定').click()
-    browser.find_element(By.LINK_TEXT, '确定').click()
-    element = [usr[0],result]
-    msg.append(element)
-
-    #判断是否成功提交
+            #确认界面
+            browser.find_element(By.LINK_TEXT, '确定').click()
+            browser.find_element(By.LINK_TEXT, '确定').click()
+            element = [usr[0],result]
+            msg.append(element)
+#判断是否成功提交
 
 browser.close()
 
