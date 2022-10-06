@@ -23,11 +23,12 @@ psw = os.environ.get('PSW')
 token = os.environ.get('API_TOKEN')
 
 msg = []
-#打开浏览器
-browser = webdriver.Chrome(options=option,service=serv)
+
 for acc in account:
     result = 'Success'
     usr = acc.split(',')
+    # 打开浏览器
+    browser = webdriver.Chrome(options=option, service=serv)
     browser.get('https://sso.ecust.edu.cn/authserver/login?service=https%3A%2F%2Fworkflow.ecust.edu.cn%2Fdefault%2Fwork%2Fuust%2Fzxxsmryb%2Fmrybcn.jsp')  # 进入登陆界面
     browser.find_element(By.ID,'username').send_keys(usr[0])
     browser.find_element(By.ID,'password').send_keys(usr[1])
@@ -63,8 +64,8 @@ for acc in account:
             msg.append(element)
             #判断是否成功提交
 
+    # 关闭浏览器资源
+    browser.close()
 
-# 关闭浏览器资源
-browser.close()
 # 发送邮件
 emailModule.sendMail(mail_user=user, mail_pass=psw, messageCode=msg)
