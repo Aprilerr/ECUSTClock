@@ -29,7 +29,7 @@ def messageProcess(messageCode):
     if len(messageCode) == 0:
         return '出现 messageCode 为空的错误'
     else:
-        for element in list:
+        for element in messageCode:
             elemented = ':'.join(element)
             listed.append(elemented)
     return '\n'.join(listed)

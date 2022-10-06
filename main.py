@@ -53,7 +53,8 @@ for acc in account:
     #确认界面
     browser.find_element(By.LINK_TEXT, '确定').click()
     browser.find_element(By.LINK_TEXT, '确定').click()
-    msg.append([usr[0],result])
+    element = [usr[0],result]
+    msg.append(element)
 
     #判断是否成功提交
 
