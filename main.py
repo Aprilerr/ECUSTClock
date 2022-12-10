@@ -9,14 +9,14 @@ import exceptionDetect
 
 os.environ["webdriver.chrome.driver"] = '/usr/bin/chromedriver'
 option = webdriver.ChromeOptions()
-# option.add_argument('--headless')   # 无头模式：不提供浏览器的可视化页面，在服务器上跑的时候要把他加上，测试的时候注掉
+option.add_argument('--headless')   # 无头模式：不提供浏览器的可视化页面，在服务器上跑的时候要把他加上，测试的时候注掉
 option.add_argument('--incognito')  # 启用无痕模式
 pref = {"profile.default_content_setting_values.geolocation": 2}
 option.add_experimental_option("prefs", pref)  # 禁用地理位置
 # 测试的时候用这个 driver
 # serv = Service('./chromedriver')
 # GitHub服务器需要用这个driver
-# serv = Service('/usr/bin/chromedriver')
+serv = Service('/usr/bin/chromedriver')
 
 # 获取 secret 资源
 account = os.environ.get('ACCOUNT').split(';')  # 字符串预处理
@@ -30,7 +30,7 @@ for acc in account:
     result = 'Success'
     usr = acc.split(',')
     # 打开浏览器
-    browser = webdriver.Chrome(options=option)
+    browser = webdriver.Chrome(options=option, executable_path=serv)
     # browser = webdriver.Chrome(options=option, service_args=serv)
     browser.get('https://sso.ecust.edu.cn/authserver/login?service=https%3A%2F%2Fworkflow.ecust.edu.cn%2Fdefault%2Fwork%2Fuust%2Fzxxsmryb%2Fmrybcn.jsp')  # 进入登陆界面
     browser.find_element(By.ID,'username').send_keys(usr[0])
