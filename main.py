@@ -30,7 +30,7 @@ for acc in account:
     result = 'Success'
     usr = acc.split(',')
     # 打开浏览器
-    browser = webdriver.Chrome(options=option, service_args=[serv])
+    browser = webdriver.Chrome(options=option, service=serv)
     # browser = webdriver.Chrome(options=option, service_args=serv)
     browser.get('https://sso.ecust.edu.cn/authserver/login?service=https%3A%2F%2Fworkflow.ecust.edu.cn%2Fdefault%2Fwork%2Fuust%2Fzxxsmryb%2Fmrybcn.jsp')  # 进入登陆界面
     browser.find_element(By.ID,'username').send_keys(usr[0])
